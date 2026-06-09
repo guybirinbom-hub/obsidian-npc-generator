@@ -1,0 +1,10 @@
+# Throwaway test/build scratch scripts (kept local only)
+_*.js
+
+# Editor / OS cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Node (in case tooling is ever added)
+node_modules/

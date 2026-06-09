@@ -1,0 +1,179 @@
+/* ------------------------------- Modal ---------------------------------- */
+.fantasy-roller-modal .fnr-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.fantasy-roller-modal .fnr-tab {
+  flex: 1;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-secondary);
+  color: var(--text-muted);
+}
+.fantasy-roller-modal .fnr-tab:hover {
+  color: var(--text-normal);
+}
+.fantasy-roller-modal .fnr-tab-active,
+.fantasy-roller-modal .fnr-tab-active:hover {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+  font-weight: 600;
+}
+.fantasy-roller-modal .fnr-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px 0;
+}
+.fantasy-roller-modal .fnr-result {
+  margin-top: 14px;
+  padding: 18px 16px;
+  min-height: 40px;
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 8px;
+  text-align: center;
+}
+.fantasy-roller-modal .fnr-name-en {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.fantasy-roller-modal .fnr-name-he {
+  font-size: 1.2em;
+  color: var(--text-muted);
+  line-height: 1.3;
+  direction: rtl;
+  margin-bottom: 10px;
+}
+.fantasy-roller-modal .fnr-meta {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+.fantasy-roller-modal .fnr-actions {
+  margin-top: 12px;
+}
+.fantasy-roller-modal .fnr-copyable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 2px 6px;
+  transition: background-color 0.12s ease;
+}
+.fantasy-roller-modal .fnr-copyable:hover {
+  background: var(--background-modifier-hover);
+}
+.fantasy-roller-modal .fnr-copyable:active {
+  background: var(--background-modifier-active-hover);
+}
+.fantasy-roller-modal .fnr-npc-sub {
+  color: var(--text-muted);
+  font-size: 0.95em;
+  margin: 2px 0 12px;
+}
+.fantasy-roller-modal .fnr-npc-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+}
+.fantasy-roller-modal .fnr-npc-row {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.fantasy-roller-modal .fnr-npc-k {
+  flex: 0 0 84px;
+  color: var(--text-muted);
+  font-size: 0.78em;
+  text-align: right;
+  padding-top: 1px;
+}
+.fantasy-roller-modal .fnr-npc-v {
+  flex: 1;
+  line-height: 1.45;
+}
+.fantasy-roller-modal .fnr-result-error {
+  border-style: solid;
+  border-color: var(--text-error);
+  color: var(--text-error);
+}
+
+/* ------------------------------ Settings -------------------------------- */
+.fantasy-roller-settings .fnr-block {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 4px 14px 12px;
+  margin-bottom: 16px;
+  background: var(--background-secondary);
+}
+.fantasy-roller-settings .fnr-subhead {
+  font-weight: 600;
+  margin: 12px 0 2px;
+}
+.fantasy-roller-settings .fnr-area-total {
+  margin: 4px 0 10px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+.fantasy-roller-settings .fnr-total-ok {
+  color: var(--text-success);
+  font-weight: 600;
+}
+.fantasy-roller-settings .fnr-pct-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1px 16px;
+  margin: 4px 0 10px;
+}
+.fantasy-roller-settings .fnr-pct-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 1px 0;
+}
+.fantasy-roller-settings .fnr-pct-label {
+  font-size: 0.85em;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fantasy-roller-settings .fnr-pct-input {
+  width: 54px;
+  flex: 0 0 auto;
+  text-align: right;
+  padding: 2px 4px;
+}
+.fantasy-roller-settings .fnr-rarity-label {
+  font-size: 0.78em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 10px 0 1px;
+}
+.fantasy-roller-settings .fnr-rarity-common { color: var(--color-green, var(--text-success)); }
+.fantasy-roller-settings .fnr-rarity-uncommon { color: var(--color-blue, var(--text-accent)); }
+.fantasy-roller-settings .fnr-rarity-rare { color: var(--color-orange, var(--text-warning)); }
+
+/* Make the name-list text areas full width and stacked under their label */
+.fantasy-roller-settings .fnr-namelist-setting {
+  display: block;
+}
+.fantasy-roller-settings .fnr-namelist-setting .setting-item-control {
+  width: 100%;
+  padding-top: 6px;
+}
+.fantasy-roller-settings .fnr-namelist {
+  width: 100%;
+  min-height: 110px;
+  font-family: var(--font-monospace);
+  resize: vertical;
+}
+.fantasy-roller-settings h2.fnr-section-gap {
+  margin-top: 30px;
+}
