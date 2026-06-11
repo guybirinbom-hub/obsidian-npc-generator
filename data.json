@@ -3,6 +3,7 @@
     {
       "id": "anc-anadi",
       "name": "Anadi",
+      "rarity": "rare",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -809,12 +810,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "rare"
+      "lastNames": []
     },
     {
       "id": "anc-azarketi",
       "name": "Azarketi",
+      "rarity": "uncommon",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -1621,12 +1622,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-catfolk",
       "name": "Catfolk",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -2434,12 +2435,12 @@
           "he": "גוֹרַה"
         }
       ],
-      "lastNames": [],
-      "rarity": "common"
+      "lastNames": []
     },
     {
       "id": "anc-centaur",
       "name": "Centaur",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -3247,12 +3248,12 @@
           "he": "אֶלִיס"
         }
       ],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-conrasu",
       "name": "Conrasu",
+      "rarity": "rare",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -4059,12 +4060,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "rare"
+      "lastNames": []
     },
     {
       "id": "anc-drow",
       "name": "Drow",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -5673,12 +5674,12 @@
           "en": "sagnemresh",
           "he": "סַגְנֶמְרֶשׁ"
         }
-      ],
-      "rarity": "uncommon"
+      ]
     },
     {
       "id": "anc-dwarf",
       "name": "Dwarf",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -7287,12 +7288,12 @@
           "en": "brulvomn",
           "he": "בְּרוּלְבוֹמְן"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-elf",
       "name": "Elf",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -8901,12 +8902,12 @@
           "en": "ayas",
           "he": "אַיַס"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-gnoll",
       "name": "Gnoll",
+      "rarity": "uncommon",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -9713,12 +9714,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-gnome",
       "name": "Gnome",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -11327,12 +11328,12 @@
           "en": "jodneess",
           "he": "ג'וֹדְנִיס"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-goblin",
       "name": "Goblin",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -12140,12 +12141,12 @@
           "he": "נוּסִילְקוֹ"
         }
       ],
-      "lastNames": [],
-      "rarity": "common"
+      "lastNames": []
     },
     {
       "id": "anc-grippli",
       "name": "Grippli",
+      "rarity": "rare",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -12952,12 +12953,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "rare"
+      "lastNames": []
     },
     {
       "id": "anc-half-elf",
       "name": "Half-Elf",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -14566,12 +14567,12 @@
           "en": "kuhavasvor",
           "he": "קוּהַבַסְבוֹר"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-halfling",
       "name": "Halfling",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -16180,12 +16181,12 @@
           "en": "vlemas",
           "he": "בְלֶמַס"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-kitsune",
       "name": "Kitsune",
+      "rarity": "uncommon",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -16992,12 +16993,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-kobold",
       "name": "Kobold",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -17805,12 +17806,12 @@
           "he": "בִיגְלַל"
         }
       ],
-      "lastNames": [],
-      "rarity": "common"
+      "lastNames": []
     },
     {
       "id": "anc-lizardfolk",
       "name": "Lizardfolk",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -18618,12 +18619,12 @@
           "he": "אוֹקְרַזוּס"
         }
       ],
-      "lastNames": [],
-      "rarity": "common"
+      "lastNames": []
     },
     {
       "id": "anc-minotaur",
       "name": "Minotaur",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -20232,12 +20233,12 @@
           "en": "threaver",
           "he": "תְרֶאַבֶר"
         }
-      ],
-      "rarity": "uncommon"
+      ]
     },
     {
       "id": "anc-orc",
       "name": "Orc",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -21846,12 +21847,12 @@
           "en": "aash",
           "he": "אַאַשׁ"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-ratfolk",
       "name": "Ratfolk",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -22659,12 +22660,12 @@
           "he": "פַּגִי"
         }
       ],
-      "lastNames": [],
-      "rarity": "common"
+      "lastNames": []
     },
     {
       "id": "anc-shoony",
       "name": "Shoony",
+      "rarity": "rare",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -23471,12 +23472,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "rare"
+      "lastNames": []
     },
     {
       "id": "anc-strix",
       "name": "Strix",
+      "rarity": "rare",
       "unisexFirstNames": true,
       "hasLastNames": false,
       "firstNames": [
@@ -24283,12 +24284,12 @@
       ],
       "maleFirstNames": [],
       "femaleFirstNames": [],
-      "lastNames": [],
-      "rarity": "rare"
+      "lastNames": []
     },
     {
       "id": "anc-tanuki",
       "name": "Tanuki",
+      "rarity": "rare",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -25897,12 +25898,12 @@
           "en": "Yamori",
           "he": "יַמוֹרִי"
         }
-      ],
-      "rarity": "rare"
+      ]
     },
     {
       "id": "anc-tengu",
       "name": "Tengu",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -27511,12 +27512,12 @@
           "en": "akyel",
           "he": "אַקְיֶל"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-vanara",
       "name": "Vanara",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -28324,12 +28325,12 @@
           "he": "הַמִי"
         }
       ],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-fetchling",
       "name": "Fetchling",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -29938,12 +29939,12 @@
           "en": "ayas",
           "he": "אַיַס"
         }
-      ],
-      "rarity": "uncommon"
+      ]
     },
     {
       "id": "anc-vishkanya",
       "name": "Vishkanya",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -30751,12 +30752,12 @@
           "he": "מַנַנִי"
         }
       ],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-nagaji",
       "name": "Nagaji",
+      "rarity": "uncommon",
       "unisexFirstNames": false,
       "hasLastNames": false,
       "firstNames": [],
@@ -31564,12 +31565,12 @@
           "he": "מַנַנִי"
         }
       ],
-      "lastNames": [],
-      "rarity": "uncommon"
+      "lastNames": []
     },
     {
       "id": "anc-nordil",
       "name": "Human - Nordil",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -32778,12 +32779,12 @@
           "en": "Drogdar",
           "he": "דְרוֹגְדַר"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-teril",
       "name": "Human - Teril",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -33992,12 +33993,12 @@
           "en": "Vethlin",
           "he": "בֶתְלִין"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-goldbry",
       "name": "Human - Goldbry",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -35206,12 +35207,12 @@
           "en": "Caelmere",
           "he": "קַאֶלְמֶרֶה"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-branxton",
       "name": "Human - Branxton",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -36420,12 +36421,12 @@
           "en": "Galdreth",
           "he": "גַלְדְרֶת"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-eldrim",
       "name": "Human - Eldrim",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -37634,12 +37635,12 @@
           "en": "Velrar",
           "he": "בֶלְרַר"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-shibin",
       "name": "Human - Shibin",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -38848,12 +38849,12 @@
           "en": "Hoshiguchi",
           "he": "הוֹשִׁיגוּצ'ִי"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-jarudror-cold",
       "name": "Human - Jarudror (Cold)",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -40062,12 +40063,12 @@
           "en": "Vesnov",
           "he": "בֶסְנוֹב"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-jarudror-desert",
       "name": "Human - Jarudror (Desert)",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -41276,12 +41277,12 @@
           "en": "Idruni",
           "he": "אִידְרוּנִי"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-learsi",
       "name": "Human - Learsi",
+      "rarity": "common",
       "unisexFirstNames": false,
       "hasLastNames": true,
       "firstNames": [],
@@ -42490,8 +42491,7 @@
           "en": "Abarbanel",
           "he": "אַבַּרְבַּנְאֵל"
         }
-      ],
-      "rarity": "common"
+      ]
     },
     {
       "id": "anc-jotunborn",
@@ -43310,9 +43310,49 @@
   ],
   "areas": [
     {
-      "id": "mq5i0lm0z4r5af",
-      "name": "",
-      "weights": {}
+      "id": "area-naitos",
+      "name": "Naitos",
+      "weights": {
+        "anc-anadi": 0.1,
+        "anc-azarketi": 0.1,
+        "anc-catfolk": 25,
+        "anc-centaur": 10,
+        "anc-conrasu": 0.1,
+        "anc-drow": 0.1,
+        "anc-dwarf": 1,
+        "anc-elf": 0.1,
+        "anc-gnoll": 10,
+        "anc-gnome": 1,
+        "anc-goblin": 0.1,
+        "anc-grippli": 0.1,
+        "anc-half-elf": 0.1,
+        "anc-halfling": 0.1,
+        "anc-kitsune": 0.1,
+        "anc-kobold": 0.1,
+        "anc-lizardfolk": 10,
+        "anc-minotaur": 10,
+        "anc-orc": 0.1,
+        "anc-ratfolk": 1,
+        "anc-shoony": 2,
+        "anc-strix": 0.1,
+        "anc-tanuki": 0.1,
+        "anc-tengu": 10,
+        "anc-vanara": 10,
+        "anc-fetchling": 0.1,
+        "anc-vishkanya": 0.1,
+        "anc-nagaji": 5,
+        "anc-nordil": 0.0333,
+        "anc-teril": 0.0333,
+        "anc-goldbry": 0.0333,
+        "anc-branxton": 0.75,
+        "anc-eldrim": 4,
+        "anc-shibin": 0.05,
+        "anc-jarudror-cold": 0.0333,
+        "anc-jarudror-desert": 0.0333,
+        "anc-learsi": 0.0333,
+        "anc-jotunborn": 0.1
+      }
     }
-  ]
+  ],
+  "dataVersion": 1
 }
