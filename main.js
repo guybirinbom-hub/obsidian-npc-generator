@@ -299,14 +299,16 @@ class RollModal extends Modal {
     };
 
     const body = contentEl.createDiv({ cls: 'fnr-body' });
-    if (this.mode === 'area') this.renderAreaMode(body);
-    else this.renderAncestryMode(body);
+    this.pickSelection = null;
+    if (this.mode === 'area') this.renderAreaControls(body);
+    else this.renderAncestryControls(body);
+    if (this.pickSelection) this.renderActions(body);
   }
 
-  renderAreaMode(body) {
+  renderAreaControls(body) {
     const areas = this.plugin.settings.areas;
     if (areas.length === 0) {
-      body.createEl('p', { cls: 'fnr-empty', text: 'No areas yet. Add areas in the plugin settings (Settings → Fantasy Name Roller).' });
+      body.createEl('p', { cls: 'fnr-empty', text: 'No areas yet. Add areas in the plugin settings (Settings → Fantasy NPC Generator).' });
       return;
     }
     if (!this.selectedAreaId || !areas.find((a) => a.id === this.selectedAreaId)) {
@@ -319,30 +321,21 @@ class RollModal extends Modal {
         this.selectedAreaId = v;
       });
     });
-
-    let resultEl;
-    new Setting(body).addButton((btn) =>
-      btn
-        .setButtonText('Generate NPC')
-        .setCta()
-        .onClick(() => {
-          const area = areas.find((a) => a.id === this.selectedAreaId);
-          const ancestry = weightedPickAncestry(area, this.plugin.settings);
-          if (!ancestry) {
-            this.showError(resultEl, 'This area has no ancestry percentages set. Open settings and give at least one ancestry a percentage above 0.');
-            return;
-          }
-          const gender = rollGender();
-          this.showNPC(resultEl, ancestry, gender, rollNPC(ancestry, gender));
-        })
-    );
-    resultEl = body.createDiv({ cls: 'fnr-result' });
+    this.pickSelection = () => {
+      const area = areas.find((a) => a.id === this.selectedAreaId);
+      const ancestry = weightedPickAncestry(area, this.plugin.settings);
+      if (!ancestry) {
+        new Notice('This area has no ancestry percentages set. Open settings and give at least one ancestry a percentage above 0.');
+        return null;
+      }
+      return { ancestry: ancestry, gender: rollGender() };
+    };
   }
 
-  renderAncestryMode(body) {
+  renderAncestryControls(body) {
     const ancestries = this.plugin.settings.ancestries;
     if (ancestries.length === 0) {
-      body.createEl('p', { cls: 'fnr-empty', text: 'No ancestries yet. Add ancestries in the plugin settings (Settings → Fantasy Name Roller).' });
+      body.createEl('p', { cls: 'fnr-empty', text: 'No ancestries yet. Add ancestries in the plugin settings (Settings → Fantasy NPC Generator).' });
       return;
     }
     if (!this.selectedAncestryId || !ancestries.find((a) => a.id === this.selectedAncestryId)) {
@@ -364,30 +357,56 @@ class RollModal extends Modal {
         this.selectedGender = v;
       });
     });
-
-    let resultEl;
-    new Setting(body).addButton((btn) =>
-      btn
-        .setButtonText('Generate NPC')
-        .setCta()
-        .onClick(() => {
-          const ancestry = ancestries.find((a) => a.id === this.selectedAncestryId);
-          const gender = this.selectedGender === 'random' ? rollGender() : this.selectedGender;
-          this.showNPC(resultEl, ancestry, gender, rollNPC(ancestry, gender));
-        })
-    );
-    resultEl = body.createDiv({ cls: 'fnr-result' });
+    this.pickSelection = () => {
+      const ancestry = ancestries.find((a) => a.id === this.selectedAncestryId);
+      const gender = this.selectedGender === 'random' ? rollGender() : this.selectedGender;
+      return { ancestry: ancestry, gender: gender };
+    };
   }
 
-  showNPC(el, ancestry, gender, npc) {
-    el.empty();
-    el.removeClass('fnr-result-error');
+  renderActions(body) {
+    if (!Array.isArray(this.plugin.npcHistory)) this.plugin.npcHistory = [];
 
-    if (!npc.firstEntry) {
-      const which = ancestry.unisexFirstNames ? 'First names' : capitalize(gender) + ' first names';
-      this.showError(el, which + ' list is empty for ' + (ancestry.name || 'this ancestry') + '. Add some names in settings.');
+    const actions = body.createDiv({ cls: 'fnr-gen-actions' });
+    const genBtn = actions.createEl('button', { cls: 'mod-cta', text: 'Generate NPC' });
+    const clearBtn = actions.createEl('button', { cls: 'fnr-clear-btn', text: 'Clear' });
+
+    const results = body.createDiv({ cls: 'fnr-results' });
+    this.renderResults(results);
+
+    genBtn.onclick = () => {
+      const sel = this.pickSelection();
+      if (!sel) return;
+      const npc = rollNPC(sel.ancestry, sel.gender);
+      if (!npc.firstEntry) {
+        const which = sel.ancestry.unisexFirstNames ? 'First names' : capitalize(sel.gender) + ' first names';
+        new Notice(which + ' list is empty for ' + (sel.ancestry.name || 'this ancestry') + '. Add some names in settings.');
+        return;
+      }
+      // Newest first, keep only the last 10.
+      this.plugin.npcHistory.unshift({ ancestry: sel.ancestry, gender: sel.gender, npc: npc });
+      if (this.plugin.npcHistory.length > 10) this.plugin.npcHistory.length = 10;
+      this.renderResults(results);
+      results.scrollTop = 0;
+    };
+    clearBtn.onclick = () => {
+      this.plugin.npcHistory = [];
+      this.renderResults(results);
+    };
+  }
+
+  renderResults(container) {
+    container.empty();
+    const hist = this.plugin.npcHistory || [];
+    if (!hist.length) {
+      container.createDiv({ cls: 'fnr-empty', text: 'No NPCs yet — click “Generate NPC”.' });
       return;
     }
+    hist.forEach((rec) => this.renderNPCCard(container, rec.ancestry, rec.gender, rec.npc));
+  }
+
+  renderNPCCard(container, ancestry, gender, npc) {
+    const el = container.createDiv({ cls: 'fnr-npc-card' });
 
     const fEn = entryEN(npc.firstEntry);
     const fHe = entryHE(npc.firstEntry);
@@ -398,36 +417,20 @@ class RollModal extends Modal {
     const appearance = npc.appearance.map((a) => npcHe(a[0]) + ': ' + npcHe(a[1])).join(' · ');
     const genderHe = gender === 'female' ? 'אישה' : 'גבר';
 
-    const copyOnClick = (node, value) => {
-      node.addClass('fnr-copyable');
-      node.setAttr('title', 'לחצו להעתקה');
-      node.onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(value);
-          new Notice('הועתק');
-        } catch (e) {
-          new Notice('לא ניתן להעתיק');
-        }
-      };
-    };
-
-    const enEl = el.createEl('div', { cls: 'fnr-name-en', text: fullEn });
-    copyOnClick(enEl, fullEn);
+    el.createEl('div', { cls: 'fnr-name-en', text: fullEn });
     const heEl = el.createEl('div', { cls: 'fnr-name-he', text: fullHe });
     heEl.setAttr('dir', 'rtl');
-    copyOnClick(heEl, fullHe);
 
     const sub = el.createDiv({ cls: 'fnr-npc-sub' });
     sub.setAttr('dir', 'rtl');
-    sub.setText((ancestry.name || '') + ' · ' + genderHe);
+    sub.setText(genderHe + ' · ' + (ancestry.name || ''));
 
     const grid = el.createDiv({ cls: 'fnr-npc-grid' });
     grid.setAttr('dir', 'rtl');
     const row = (label, value) => {
       const r = grid.createDiv({ cls: 'fnr-npc-row' });
       r.createSpan({ cls: 'fnr-npc-k', text: label });
-      const v = r.createSpan({ cls: 'fnr-npc-v', text: value });
-      copyOnClick(v, value);
+      r.createSpan({ cls: 'fnr-npc-v', text: value });
     };
     row('גיל', String(npc.age));
     row('מקצוע', npcHe(npc.profession));
@@ -441,12 +444,12 @@ class RollModal extends Modal {
     row('ילדות', npcHe(npc.childhood));
     row('משפחה', npcHe(npc.family));
 
-    const actions = el.createDiv({ cls: 'fnr-actions' });
-    const copyBtn = actions.createEl('button', { text: 'העתק דמות' });
+    const cardActions = el.createDiv({ cls: 'fnr-actions' });
+    const copyBtn = cardActions.createEl('button', { cls: 'fnr-copy-btn', text: 'העתק דמות' });
     copyBtn.onclick = async () => {
       const text = [
         fullHe + '  /  ' + fullEn,
-        (ancestry.name || '') + ' · ' + genderHe,
+        genderHe + ' · ' + (ancestry.name || ''),
         'גיל: ' + npc.age,
         'מקצוע: ' + npcHe(npc.profession),
         'רקע: ' + npcHe(npc.background),
@@ -466,12 +469,6 @@ class RollModal extends Modal {
         new Notice('לא ניתן להעתיק');
       }
     };
-  }
-
-  showError(el, msg) {
-    el.empty();
-    el.addClass('fnr-result-error');
-    el.createDiv({ text: msg });
   }
 }
 

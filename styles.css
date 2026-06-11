@@ -28,13 +28,37 @@
   text-align: center;
   padding: 16px 0;
 }
-.fantasy-roller-modal .fnr-result {
-  margin-top: 14px;
-  padding: 18px 16px;
-  min-height: 40px;
-  border: 1px dashed var(--background-modifier-border);
+.fantasy-roller-modal .fnr-gen-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0 2px;
+}
+.fantasy-roller-modal .fnr-gen-actions .mod-cta {
+  flex: 1;
+}
+.fantasy-roller-modal .fnr-results {
+  margin-top: 12px;
+  max-height: 55vh;
+  overflow-y: auto;
+  border: 1px solid var(--background-modifier-border);
   border-radius: 8px;
+  /* let the user drag-select text and copy with Ctrl/Cmd+C */
+  user-select: text;
+  -webkit-user-select: text;
+}
+.fantasy-roller-modal .fnr-results > .fnr-empty {
+  padding: 24px 0;
+}
+.fantasy-roller-modal .fnr-npc-card {
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
   text-align: center;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.fantasy-roller-modal .fnr-npc-card:last-child {
+  border-bottom: none;
 }
 .fantasy-roller-modal .fnr-name-en {
   font-size: 2em;
@@ -57,17 +81,9 @@
 .fantasy-roller-modal .fnr-actions {
   margin-top: 12px;
 }
-.fantasy-roller-modal .fnr-copyable {
-  cursor: pointer;
-  border-radius: 6px;
-  padding: 2px 6px;
-  transition: background-color 0.12s ease;
-}
-.fantasy-roller-modal .fnr-copyable:hover {
-  background: var(--background-modifier-hover);
-}
-.fantasy-roller-modal .fnr-copyable:active {
-  background: var(--background-modifier-active-hover);
+.fantasy-roller-modal .fnr-copy-btn {
+  font-size: 0.82em;
+  padding: 3px 10px;
 }
 .fantasy-roller-modal .fnr-npc-sub {
   color: var(--text-muted);
@@ -95,11 +111,6 @@
 .fantasy-roller-modal .fnr-npc-v {
   flex: 1;
   line-height: 1.45;
-}
-.fantasy-roller-modal .fnr-result-error {
-  border-style: solid;
-  border-color: var(--text-error);
-  color: var(--text-error);
 }
 
 /* ------------------------------ Settings -------------------------------- */
