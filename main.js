@@ -727,22 +727,31 @@ class FantasyNameRollerPlugin extends Plugin {
 
     if (!hasContent || savedVer < bundledVer) {
       // Fresh install, or this release ships newer bundled names: (re)seed the official
-      // ancestries from the embedded library, while keeping the user's own regions and any
-      // custom ancestries they added that aren't part of the bundle.
+      // ancestries from the embedded library, while keeping any custom ancestries the user
+      // added that aren't part of the bundle.
       const bundledNames = new Set((BUNDLED_DATA.ancestries || []).map((a) => a.name));
       const userExtra = (((saved && saved.ancestries) || [])).filter((a) => a && a.name && !bundledNames.has(a.name));
-      const userAreas = saved && Array.isArray(saved.areas) && saved.areas.length ? saved.areas : (BUNDLED_DATA.areas || []);
       this.settings = {
         dataVersion: bundledVer,
         ancestries: (BUNDLED_DATA.ancestries || []).concat(userExtra),
-        areas: userAreas,
+        areas: saved && Array.isArray(saved.areas) ? saved.areas : [],
       };
     } else {
       this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
     }
 
+    // Shipped regions (e.g. Naitos) are content, like the ancestries: make sure every bundled
+    // area the user doesn't already have (matched by id) is present — without disturbing their
+    // own regions or any edits they've made to a region they already have.
+    const haveAreaIds = new Set((this.settings.areas || []).map((a) => a && a.id));
+    this.settings.areas = (this.settings.areas || []).concat(
+      (BUNDLED_DATA.areas || []).filter((a) => a && a.id && !haveAreaIds.has(a.id))
+    );
+
     this.settings.ancestries = (this.settings.ancestries || []).map((a) => Object.assign(createAncestry(), a));
-    this.settings.areas = (this.settings.areas || []).map((a) => Object.assign(createArea(), a, { weights: (a && a.weights) || {} }));
+    this.settings.areas = (this.settings.areas || [])
+      .filter((a) => a && ((a.name && a.name.trim()) || (a.weights && Object.keys(a.weights).length)))
+      .map((a) => Object.assign(createArea(), a, { weights: (a && a.weights) || {} }));
     await this.saveData(this.settings);
   }
 
