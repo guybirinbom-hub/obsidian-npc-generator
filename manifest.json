@@ -1,7 +1,7 @@
 {
   "id": "fantasy-name-roller",
   "name": "Fantasy NPC Generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minAppVersion": "1.0.0",
   "description": "Generate detailed fantasy NPCs (or just names) across 38 Pathfinder-style ancestries — each with a bilingual English/Hebrew name, ancestry-accurate appearance, height, age, profession, background, and personality. Roll by region population or by ancestry.",
   "author": "guybirinbom-hub",
