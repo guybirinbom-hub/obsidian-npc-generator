@@ -121,6 +121,53 @@
   margin-bottom: 16px;
   background: var(--background-secondary);
 }
+/* Collapsible area blocks */
+.fantasy-roller-settings details.fnr-area {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.fantasy-roller-settings .fnr-area-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px 14px;
+  list-style: none;
+  user-select: none;
+}
+.fantasy-roller-settings .fnr-area-summary::-webkit-details-marker {
+  display: none;
+}
+.fantasy-roller-settings .fnr-area-arrow {
+  color: var(--text-muted);
+  font-size: 0.8em;
+  transition: transform 0.12s ease;
+}
+.fantasy-roller-settings details.fnr-area[open] .fnr-area-arrow {
+  transform: rotate(90deg);
+}
+.fantasy-roller-settings .fnr-area-name {
+  flex: 1;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fantasy-roller-settings .fnr-area-actions {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.fantasy-roller-settings .fnr-area-btn {
+  font-size: 0.78em;
+  padding: 2px 10px;
+}
+.fantasy-roller-settings .fnr-area-del:hover {
+  color: var(--text-error);
+}
+.fantasy-roller-settings .fnr-area-body {
+  padding: 0 14px 12px;
+}
 .fantasy-roller-settings .fnr-subhead {
   font-weight: 600;
   margin: 12px 0 2px;

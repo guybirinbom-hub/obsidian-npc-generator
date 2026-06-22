@@ -620,9 +620,51 @@ class FantasyNameRollerSettingTab extends PluginSettingTab {
   }
 
   renderArea(containerEl, area, index) {
-    const wrapper = containerEl.createDiv({ cls: 'fnr-block' });
+    if (!this.openAreaIds) this.openAreaIds = new Set();
 
-    new Setting(wrapper)
+    // Each area is a collapsible block: a summary header (name + Duplicate + Delete)
+    // and a body (name field + population-mix grid) that hides when collapsed.
+    const details = containerEl.createEl('details', { cls: 'fnr-block fnr-area' });
+    if (this.openAreaIds.has(area.id)) details.open = true;
+    details.addEventListener('toggle', () => {
+      if (details.open) this.openAreaIds.add(area.id);
+      else this.openAreaIds.delete(area.id);
+    });
+
+    const summary = details.createEl('summary', { cls: 'fnr-area-summary' });
+    summary.createSpan({ cls: 'fnr-area-arrow', text: '▸' });
+    const nameSpan = summary.createSpan({ cls: 'fnr-area-name', text: area.name || '(unnamed area)' });
+    const sumActions = summary.createDiv({ cls: 'fnr-area-actions' });
+
+    const dupBtn = sumActions.createEl('button', { cls: 'fnr-area-btn', text: 'Duplicate' });
+    dupBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const existing = new Set(this.plugin.settings.areas.map((a) => a.name));
+      const stem = (area.name || '').replace(/\d+$/, '') || (area.name || 'Area');
+      let i = 2;
+      let newName = stem + i;
+      while (existing.has(newName)) { i++; newName = stem + i; }
+      const copy = { id: genId(), name: newName, weights: Object.assign({}, area.weights || {}) };
+      this.plugin.settings.areas.splice(index + 1, 0, copy);
+      this.openAreaIds.add(copy.id); // open the new copy so it's ready to edit
+      await this.plugin.saveSettings();
+      this.display();
+    });
+
+    const delBtn = sumActions.createEl('button', { cls: 'fnr-area-btn fnr-area-del', text: 'Delete' });
+    delBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.plugin.settings.areas.splice(index, 1);
+      this.openAreaIds.delete(area.id);
+      await this.plugin.saveSettings();
+      this.display();
+    });
+
+    const body = details.createDiv({ cls: 'fnr-area-body' });
+
+    new Setting(body)
       .setName('Area name')
       .addText((text) =>
         text
@@ -630,30 +672,21 @@ class FantasyNameRollerSettingTab extends PluginSettingTab {
           .setValue(area.name)
           .onChange(async (v) => {
             area.name = v;
+            nameSpan.setText(v || '(unnamed area)');
             await this.plugin.saveSettings();
-          })
-      )
-      .addExtraButton((btn) =>
-        btn
-          .setIcon('trash-2')
-          .setTooltip('Delete this area')
-          .onClick(async () => {
-            this.plugin.settings.areas.splice(index, 1);
-            await this.plugin.saveSettings();
-            this.display();
           })
       );
 
     if (this.plugin.settings.ancestries.length === 0) {
-      wrapper.createEl('p', { cls: 'setting-item-description', text: 'Add at least one ancestry above to set this area’s population mix.' });
+      body.createEl('p', { cls: 'setting-item-description', text: 'Add at least one ancestry above to set this area’s population mix.' });
       return;
     }
 
     if (!area.weights) area.weights = {};
 
-    wrapper.createEl('div', { cls: 'fnr-subhead', text: 'Population mix (% per ancestry)' });
+    body.createEl('div', { cls: 'fnr-subhead', text: 'Population mix (% per ancestry)' });
 
-    const totalEl = wrapper.createDiv({ cls: 'fnr-area-total' });
+    const totalEl = body.createDiv({ cls: 'fnr-area-total' });
     const updateTotal = () => {
       const total = this.plugin.settings.ancestries.reduce((s, a) => s + (parseFloat(area.weights[a.id]) || 0), 0);
       const ok = Math.abs(total - 100) < 0.01;
@@ -674,8 +707,8 @@ class FantasyNameRollerSettingTab extends PluginSettingTab {
       const tier = a.rarity || 'common';
       if (tier !== currentTier) {
         currentTier = tier;
-        wrapper.createEl('div', { cls: 'fnr-rarity-label fnr-rarity-' + tier, text: labels[tier] || tier });
-        grid = wrapper.createDiv({ cls: 'fnr-pct-grid' });
+        body.createEl('div', { cls: 'fnr-rarity-label fnr-rarity-' + tier, text: labels[tier] || tier });
+        grid = body.createDiv({ cls: 'fnr-pct-grid' });
       }
       const row = grid.createDiv({ cls: 'fnr-pct-row' });
       row.createSpan({ cls: 'fnr-pct-label', text: a.name || '(unnamed ancestry)' });
