@@ -315,13 +315,17 @@ class RollModal extends Modal {
       return;
     }
     if (!this.selectedAreaId || !areas.find((a) => a.id === this.selectedAreaId)) {
-      this.selectedAreaId = areas[0].id;
+      // Default to the area chosen last time the generator was used.
+      const last = this.plugin.settings.lastAreaId;
+      this.selectedAreaId = last && areas.find((a) => a.id === last) ? last : areas[0].id;
     }
     new Setting(body).setName('Area').addDropdown((dd) => {
       areas.forEach((a) => dd.addOption(a.id, a.name || '(unnamed area)'));
       dd.setValue(this.selectedAreaId);
-      dd.onChange((v) => {
+      dd.onChange(async (v) => {
         this.selectedAreaId = v;
+        this.plugin.settings.lastAreaId = v; // remember for next time the generator opens
+        await this.plugin.saveSettings();
       });
     });
     this.pickSelection = () => {
@@ -773,6 +777,9 @@ class FantasyNameRollerPlugin extends Plugin {
     } else {
       this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
     }
+
+    // Remember the last-used area selection across reloads / re-seeds.
+    if (saved && saved.lastAreaId) this.settings.lastAreaId = saved.lastAreaId;
 
     // Shipped regions (e.g. Naitos) are content, like the ancestries: make sure every bundled
     // area the user doesn't already have (matched by id) is present — without disturbing their
