@@ -248,6 +248,9 @@ function rollNPC(ancestry, gender) {
   const ar = NPC_DATA.age[ancestry.id] || NPC_DATA.ageDefault;
   // Squaring the roll skews toward the younger end, so most NPCs are working-age adults with a thinning tail toward the ancestry's maximum.
   npc.age = Math.max(13, ar[0] + Math.floor(Math.pow(Math.random(), 2) * (ar[1] - ar[0] + 1)));
+  // Birthday on the world calendar: 10 months of 30 days each (the year is not tracked).
+  npc.birthMonth = 1 + Math.floor(Math.random() * 10);
+  npc.birthDay = 1 + Math.floor(Math.random() * 30);
   let rows = NPC_DATA.appearance[ancestry.id];
   if (!rows) {
     const pal = NPC_DATA.humanKingdom[ancestry.id];
@@ -416,6 +419,7 @@ class RollModal extends Modal {
     const fullHe = lHe ? fHe + ' ' + lHe : fHe;
     const appearance = npc.appearance.map((a) => npcHe(a[0]) + ': ' + npcHe(a[1])).join(' · ');
     const genderHe = gender === 'female' ? 'אישה' : 'גבר';
+    const birth = npc.birthMonth ? ' (חודש ' + npc.birthMonth + ', יום ' + npc.birthDay + ')' : '';
 
     el.createEl('div', { cls: 'fnr-name-en', text: fullEn });
     const heEl = el.createEl('div', { cls: 'fnr-name-he', text: fullHe });
@@ -432,7 +436,7 @@ class RollModal extends Modal {
       r.createSpan({ cls: 'fnr-npc-k', text: label });
       r.createSpan({ cls: 'fnr-npc-v', text: value });
     };
-    row('גיל', String(npc.age));
+    row('גיל', String(npc.age) + birth);
     row('מקצוע', npcHe(npc.profession));
     row('רקע', npcHe(npc.background));
     row('גובה', npc.height);
@@ -450,7 +454,7 @@ class RollModal extends Modal {
       const text = [
         fullHe + '  /  ' + fullEn,
         genderHe + ' · ' + (ancestry.name || ''),
-        'גיל: ' + npc.age,
+        'גיל: ' + npc.age + birth,
         'מקצוע: ' + npcHe(npc.profession),
         'רקע: ' + npcHe(npc.background),
         'גובה: ' + npc.height,
